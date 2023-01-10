@@ -3,6 +3,23 @@
 class Public::SessionsController < Devise::SessionsController
   before_action :reviewer_state, only: [:create]
 
+  def new
+  end
+
+  def create
+  end
+
+  def destroy
+  end
+
+
+  def guest_sign_in
+    reviewer = Reviewer.guest
+    sign_in reviewer
+    redirect_to root_path,notice: 'ゲストユーザーとしてログインしました。'
+  end
+
+
   protected
   #退会してるか判断するメソッド
   def reviewer_state
@@ -11,10 +28,10 @@ class Public::SessionsController < Devise::SessionsController
     # ↓アカウントを取得できなかった場合、このメソッドを終了する
     return if !@reviewer
     # 処理2⃣↓取得したアカウントのパスワードと入力されたパスワードが一致してるか判別
-    if @reviewer.valid_password?(params[:reviewer][:password])
+    if @reviewer.valid_password?(params[:reviewer][:password]) && @reviewer.is_deleted == true
     end
-    #処理3⃣を記述！
   end
+end
 
 
 
@@ -42,4 +59,3 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-end
