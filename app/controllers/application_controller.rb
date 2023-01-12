@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+# ↓※あとでコメントアウト外す！
 #  protect_from_forgery with: :exception
 #  before_action :authenticate_reviewer!, except: [:top, :about]
 #  before_action :configure_permitted_parameters, if: :devise_controller?
