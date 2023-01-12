@@ -3,9 +3,9 @@
 <table>
     <thead>
         <tr>
+            <th scope="col" width="25%"></th>
             <th scope="col" width="25%">店名</th>
             <th scope="col" width="25%">店舗住所</th>
-            <th scope="col" width="25%">ジャンル</th>
         </tr>
     </thead>
 
@@ -17,6 +17,8 @@
                 <%= image_tag shop.get_shop_image, size: '50x50' %>
                 <% end %>
             </td>
+            <td><%= shop.name %></td>
+            <td><%= shop.adrress %></td>
         </tr>
     </tbody>
 

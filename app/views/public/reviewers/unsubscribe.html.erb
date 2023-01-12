@@ -1,0 +1,10 @@
+<div class='container px-5 px-sm-0'>
+  <b>本当に退会しますか？</b>
+  <p>
+    退会すると、これまでのコメント履歴も削除されます。<br>
+    退会する場合は、「退会する」をクリックしてください。
+  </p>
+
+  <%= link_to "退会しない",reviewers_my_page_path, class: "btn btn-primary" %>
+  <%= link_to "退会する",reviewers_withdrawal_path(current_reviewer.id), method: :patch, class: "btn btn-danger" %>
+</div>

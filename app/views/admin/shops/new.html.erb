@@ -1,0 +1,31 @@
+<div class='container'>
+  <div class='row justify-content-center'>
+    <div class='col-md-7 mx-auto'>
+      <h3>店舗新規登録</h3>
+      <%= form_with model: @shop, url: admin_shop_path, method: :post do |f| %>
+        <div class="form-group">
+          <%= f.label :image, "店舗参考画像" %><br>
+          <%= f.file_field :image, accept: "image/*" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :name, "店舗名" %><br>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :address, "店舗住所" %><br>
+          <%= f.text_field :address, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          支払方法
+        </div>
+        
+        <div class="form-group">
+          ジャンル
+        </div>
+        
+    </div>
+  </div>
+</div>

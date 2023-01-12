@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   #ゲストログイン用ルーティング
-  devise_scope :reviewers do
+  devise_scope :reviewer do
     post 'reviewers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 

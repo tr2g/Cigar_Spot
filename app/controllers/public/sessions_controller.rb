@@ -1,10 +1,11 @@
 class Public::SessionsController < Devise::SessionsController
   before_action :reject_inactive_reviewer, only: [:create]
 
+#ゲストログイン用
   def guest_sign_in
     reviewer = Reviewer.guest
-    sign_in reviewer
-    redirect_to root_path,notice: 'ゲストユーザーとしてログインしました。'
+    sign_in reviewer #ゲストユーザーをログイン状態にする
+    redirect_to root_path(reviewer),notice: 'ゲストユーザーとしてログインしました。'
   end
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CigarSpot</title>
+    <title>Cigar Spot</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,67 +13,72 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-light p-5">
         <div class="container">
-          <a class="navbar-brand" href="/">LOGO</a>
+          <a class="navbar-brand" href="/"><%= image_tag 'CigarSpot_logo.jpg', size: '200x200' %></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggle-icon"></span>
+            <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if reviewer_signed_in? %>
               <li>
-                <%= link_to reviewers_my_page_path, class: 'nav-link text-light' do %>
+                <%= link_to reviewers_my_page_path, class: 'nav-link text-secondary' do %>
                 <i class="fas fa-user"></i> My page
                 <% end %>
               </li>
               <li>
-                <%= link_to shops_path, class: 'nav-link text-light' do %>
+                <%= link_to shops_path, class: 'nav-link text-secondary' do %>
                 <i class="fas fa-coffee"></i> Shops
                 <% end %>
               </li>
               <li>
-                <%= link_to destroy_reviewer_session_path, method: :delete, class: 'nav-link text-light' do %>
+                <%= link_to destroy_reviewer_session_path, method: :delete, class: 'nav-link text-secondary' do %>
                 <i class="fas fa-sign-out-alt"></i> Log out
                 <% end %>
               </li>
               <li>
-                <%= link_to about_path, class: 'nav-link text-light' do %>
+                <%= link_to about_path, class: 'nav-link text-secondary' do %>
                 <i class="fas fa-smoking"></i> About
                 <% end %>
               </li>
 
               <% elsif admin_signed_in? %>
               <li>
-                <%= link_to "登録店舗一覧", admin_shops_path, class: 'nav-link text-light' %>
+                <%= link_to "登録店舗一覧", admin_shops_path, class: 'nav-link text-secondary' %>
               </li>
               <li>
-                <%= link_to "登録会員一覧", admin_reviewers_path, class: 'nav-link text-light' %>
+                <%= link_to "登録会員一覧", admin_reviewers_path, class: 'nav-link text-secondary' %>
               </li>
               <li>
-                <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-light' %>
+                <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-secondary' %>
               </li>
               <li>
-                <%= link_to "ログアウト", destroy_admin_session_path, class: 'nav-link text-light' %>
+                <%= link_to "ログアウト", destroy_admin_session_path, class: 'nav-link text-secondary', method: :delete %>
               </li>
               <% else %>
               <li>
-                <%= link_to root_path,class: 'nav-link text-light' do %>
+                <%= link_to reviewers_guest_sign_in_path, class: 'nav-link text-secondary', method: :post do %>
+                  <i class="far fa-user"></i> Guest Login
+                <% end %>
+              </li>
+              <li>
+                <%= link_to root_path,class: 'nav-link text-secondary' do %>
                   <i class="fas fa-home"></i> Top
                 <% end %>
               </li>
               <li>
-                <%= link_to about_path,class: 'nav-link text-light' do %>
+                <%= link_to about_path,class: 'nav-link text-secondary' do %>
                   <i class="fas fa-link"></i> About
                 <% end %>
               </li>
               <li>
-                <%= link_to new_reviewer_registration_path,class: 'nav-link text-light' do %>
+                <%= link_to new_reviewer_registration_path,class: 'nav-link text-secondary' do %>
                   <i class="fas fa-user-plus"></i> Sign up
                 <% end %>
               </li>
               <li>
-                <%= link_to new_reviewer_session_path ,class: 'nav-link text-light' do %>
+                <%= link_to new_reviewer_session_path ,class: 'nav-link text-secondary' do %>
                   <i class="fas fa-sign-in-alt"></i> Log in
                 <% end %>
               </li>

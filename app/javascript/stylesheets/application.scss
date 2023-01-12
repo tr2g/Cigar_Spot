@@ -1,7 +1,24 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-//↓これコメントアウト外すとBootStrapが反映されなくなる
-//body{
-//  background-image: url("../images/hoge.jpg");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+//デプロイ手順で行った「背景画像を表示できるようにする」記述
+//画像がないからだと思われる
+//body {
+//  background-image: image-url("hoge.jpg");
 //}
+
+//トップページテキスト下の背景画像
+.home_photo{
+  background-image: image-url("/top_image.jpg");
+  background-size: cover;
+  width: 700px;
+  height: 400px;
+  opacity: 0.3;
+}
