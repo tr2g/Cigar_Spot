@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'shop_payments/index'
+    get 'shop_payments/edit'
+  end
   # レビュアー用ルーティング
   devise_for :reviewers, skip: [:passwords], controllers: {
     registrations: "public/registrations",

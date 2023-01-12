@@ -38,6 +38,6 @@ class Admin::ShopsController < ApplicationController
   #ストロングパラメーター
   private
     def shop_params
-      params.require(:shop).permit(:name, :address, :access, :hours, :genre_id, :is_active)
+      params.require(:shop).permit(:name, :address, :access, :hours, :genre_id, :shop_payment_ids[], :is_active)
     end
 end

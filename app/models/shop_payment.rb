@@ -1,5 +1,6 @@
 class ShopPayment < ApplicationRecord
 
-  belongs_to :shop, dependent: :destroy
+  has_many :shop_pay_relations
+  has_many :shops,through: :shop_pay_relations, dependent: :destroy
 
 end
