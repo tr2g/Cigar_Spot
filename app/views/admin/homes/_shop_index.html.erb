@@ -1,0 +1,23 @@
+<h1>トップページ兼登録店舗一覧</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col" width="25%">店名</th>
+            <th scope="col" width="25%">店舗住所</th>
+            <th scope="col" width="25%">ジャンル</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% shops.each do |shop| %>
+        <tr>
+            <td>
+                <%= link_to admin_shop_path(shop) do %>
+                <%= image_tag shop.get_shop_image, size: '50x50' %>
+                <% end %>
+            </td>
+        </tr>
+    </tbody>
+
+</table>

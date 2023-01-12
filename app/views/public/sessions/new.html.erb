@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='col mt-3'>
     <h2>Log in</h2>
-      <%= form_with model: @reviewer, url: session_path(resource_name), local: true do |f| %>
+      <%= form_with model: @reviewer, url: reviewer_session_path, local: true do |f| %>
 
         <table>
           <tr>
