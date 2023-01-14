@@ -1,35 +1,33 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-      <h2>Sign up</h2>
+      <h2>新規会員登録</h2>
       <%= form_with model: @reviewer, url: reviewer_registration_path, id: 'new_reviewer', class: 'new_reviewer', local: true do |f| %>
         <!-- render "public/shared/error_messages", resource: resource ←エラーメッセージ-->
-        <table>
-          <tr>
-            <th><%= f.label :nickname, "ニックネーム" %></th>
-            <td><%= f.text_field :nickname, autofocus: true, class: "nickname rounded" %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :birthday, "生年月日" %></th>
-            <td><%= f.date_select :birthday, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 20), default: Date.new(1987, 1, 1), class: "birthday rounded" %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :email, "メールアドレス" %></th>
-            <td><%= f.email_field :email, autofocus: true, class: "email rounded" %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :password, "パスワード" %></th>
-            <td><%= f.password_field :password, autofocus: true, class: "password rounded" %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :password_confirmation, "パスワード（確認）" %></th>
-            <td><%= f.password_field :password_confirmation, autocomplete: "off", class: "password_confirm rounded" %></td>
-          </tr>
-          <tr>
-            <th></th>
-            <td><%= f.submit "Sing up！", class: "btn btn-sm btn-secondary rounded" %></td>
-          </tr>
-        </table>
+
+        <div class="field">
+          <%= f.label :nickname, "ニックネーム" %><br>
+          <%= f.text_field :nickname, autofocus: true, class: "nickname rounded" %>
+        </div>
+        <div class="field">
+          <%= f.label :birthday, "生年月日" %><br>
+            <%= f.date_select :birthday, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 20), default: Date.new(1987, 1, 1), class: "birthday rounded" %>
+        </div>
+        <div class="field">
+          <%= f.label :email, "メールアドレス" %><br>
+          <%= f.email_field :email, autofocus: true, class: "email rounded" %>
+        </div>
+        <div class="field">
+          <%= f.label :password, "パスワード" %><br>
+            <%= f.password_field :password, autofocus: true, class: "password rounded" %>
+        </div>
+        <div class="field">
+          <%= f.label :password_confirmation, "パスワード（確認）" %><br>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "password_confirm rounded" %>
+        </div> <br>
+        <div class="actions">
+          <%= f.submit "Sing up！", class: "btn btn-sm btn-secondary rounded" %>
+        </div>
       <% end %>
     </div>
   </div>

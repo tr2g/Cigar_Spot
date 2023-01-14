@@ -24,7 +24,7 @@ class Admin::ShopPaymentsController < ApplicationController
   def destroy
     @shop_payment = ShopPayment.find(params[:id])
     @shop_payment.destroy
-    redirect_to admin_shop_payments_path
+    redirect_to admin_shop_payments_path, notice: "削除しました"
   end
 
 

@@ -23,8 +23,10 @@
             <ul class="navbar-nav ml-auto">
               <% if reviewer_signed_in? %>
               <li>
-                <%= link_to reviewers_my_page_path, class: 'nav-link text-secondary' do %>
-                <i class="fas fa-user"></i> My page
+                <% if @reviewer == current_reviewer %> <!--ゲストユーザーにはマイページリンクを表示しない-->
+                  <%= link_to reviewers_my_page_path, class: 'nav-link text-secondary' do %>
+                  <i class="fas fa-user"></i> My page
+                  <% end %>
                 <% end %>
               </li>
               <li>
@@ -49,6 +51,9 @@
               </li>
               <li>
                 <%= link_to "登録会員一覧", admin_reviewers_path, class: 'nav-link text-secondary' %>
+              </li>
+              <li>
+                <%= link_to "支払い方法一覧", admin_shop_payments_path, class: 'nav-link text-secondary' %>
               </li>
               <li>
                 <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-secondary' %>

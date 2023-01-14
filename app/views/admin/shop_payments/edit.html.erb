@@ -1,2 +1,10 @@
-<h1>Admin::ShopPayments#edit</h1>
-<p>Find me in app/views/admin/shop_payments/edit.html.erb</p>
+<div class='container'>
+  <h5>支払方法名編集・削除</h5>
+  <div class='col-7 mt-5'>
+    <%= form_with model: @shop_payment, url: admin_shop_payment_path, method: :patch do |f| %>
+    <strong class="mr-5">支払方法名</strong>
+      <%= f.text_field :name, class: "mr-5" %> <br>
+      <%= f.submit "変更", class: "btn btn-success" %> 
+    <% end %>
+  </div>
+</div>
