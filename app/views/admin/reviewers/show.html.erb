@@ -1,32 +1,37 @@
 <div class='container'>
-  <%= image_tag @reviewer.get_profile_image, size: '100x100' %>
-  <div class='row'>
-    <h6><%= @reviewer.nickname %>さんの登録情報</h6>
+  <div class='row bg-secondary text-light'>
+    <h4><%= @reviewer.nickname %>さんの登録情報</h4>
   </div>
 
+    <!--プロフィール画像表示-->
   <div class='row'>
+    <div class='col-3 ml-5 mt-5'>
+      <%= image_tag @reviewer.get_profile_image, size: '100x100' %>
+    </div>
+
+    <!--会員情報表示-->
+    <div class='col-7 ml-3 mt-5'>
     <table>
       <tr>
-    <th scope="col" width="150">ニックネーム</th><td scope="col" width="190"><%= @reviewer.nickname %></td><td scope="col" width="190"></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th><td><%= @reviewer.email %></td><td></td>
-    </tr>
-    <tr>
-      <th>会員ステータス</th>
-      <td>
-        <% status=@reviewer.is_deleted %>
-        <% if status==false %>
-          <b class="text-success">有効</b>
-        <% else %>
-          <b class="text-black-50">退会</b>
-        <% end %>
-      </td>
-      <td></td>
+        <th scope="col" width="150">ニックネーム</th>
+        <td><%= @reviewer.nickname %></td>
+      </tr>
+      <tr>
+        <th scope="col" width="150">メールアドレス</th><td><%= @reviewer.email %></td><td></td>
+      </tr>
+      <tr>
+        <th scope="col" width="150">会員ステータス</th>
+        <td>
+          <% status=@reviewer.is_deleted %>
+          <% if status==false %>
+            <b class="text-success">有効</b>
+          <% else %>
+            <b class="text-black-50">退会</b>
+          <% end %>
+        </td>
     </tr>
   <tr>
-    <td></td>
-    <td><%= link_to "編集する", edit_admin_reviewer_path(@reviewer.id), class: "btn btn-success" %></td>
+    <td><%= link_to "編集する", edit_admin_reviewer_path(@reviewer.id), class: "btn btn-success btn-sm" %></td>
   </tr>
     </table>
   </div>

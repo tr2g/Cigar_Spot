@@ -6,8 +6,9 @@ class Public::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    @shop_payments = ShopPayment.where(shop_payment_ids:[])
-    #@reviewer_comments = ReviewerComment.where('is_active = true').last(3)
+    @shop_payments = ShopPayment.where(id: @shop.shop_payments.pluck(:id))
+    @reviewer_comment = @shop.reviewer_comments.new
+    #@reviewer_comments = ReviewerComment.where(is_active: true).last(3)
   end
 
 

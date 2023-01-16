@@ -16,14 +16,14 @@ class Admin::ShopPaymentsController < ApplicationController
   end
 
   def update
-    @shop_payment = ShopPayment.find(params[:id])
-    @shop_payment.update(shop_payment_params)
+    shop_payment = ShopPayment.find(params[:id])
+    shop_payment.update(shop_payment_params)
     redirect_to admin_shop_payments_path
   end
 
   def destroy
-    @shop_payment = ShopPayment.find(params[:id])
-    @shop_payment.destroy
+    shop_payment = ShopPayment.find(params[:id])
+    shop_payment.destroy
     redirect_to admin_shop_payments_path, notice: "削除しました"
   end
 

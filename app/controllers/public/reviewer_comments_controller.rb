@@ -1,5 +1,11 @@
 class Public::ReviewerCommentsController < ApplicationController
 
+
+  def index
+    @reviewer_comments = ReviewerComment.all
+    @reviewer_comment = ReviewerComment.find(reviewer_comment_params)
+  end
+
   def create
     shop = Shop.find(params[:shop_id])
     comment = current_reviewer.reviewer_comments.new(reviewer_comment_params)
@@ -22,12 +28,18 @@ class Public::ReviewerCommentsController < ApplicationController
     redirect_to shops_path
   end
 
+  def destroy
+    @reviewer_comment = ReviewerComment.find(reviewer_comment_params)
+    @reviewer_comment.destroy
+    redirect_to shops_path
+  end
+
 
 
   # ストロングパラメーター
   private
     def reviewer_comment_params
-      params.require(:reviewer_comment).permit(:title, :body)
+      params.require(:reviewer_comment).permit(:body)
     end
 
 end

@@ -28,6 +28,7 @@ class Public::ReviewersController < ApplicationController
   end
 
   def edit
+    #@reviewer_comment = ReviewerComment.find(reviewer_comment_params)
     @reviewer = Reviewer.find(params[:id])
     if @reviewer != current_reviewer
       redirect_to reviewer_path(current_reviewer.id)

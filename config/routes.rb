@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     patch 'reviewers/withdrawal' => 'reviewers#withdrawal'
 
     resources :reviewers
-    resources :shops
+    resources :shops do
+      resources :reviewer_comments
+    end
     resources :sessions
     resources :registrations
     resources :reviewer_comments
