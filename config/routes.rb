@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :shops
     resources :sessions
     resources :registrations
-    resources :comments
+    resources :reviewer_comments
   end
 
   #ゲストログイン用ルーティング
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     resources :genres
     resources :reviewers
     resources :shops
-    resources :comments
+    resources :reviewer_comments
     resources :sessions
     resources :shop_payments
   end

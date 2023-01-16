@@ -5,5 +5,12 @@ class Shop < ApplicationRecord
   has_many :shop_payments,through: :shop_pay_relations, dependent: :destroy
   belongs_to :genre
 
+  has_one_attached :shop_image
+
   accepts_nested_attributes_for :shop_pay_relations
+
+  def get_shop_image
+    (shop_image.attached?) ? shop_image : 'no_image.jpg'
+  end
+
 end

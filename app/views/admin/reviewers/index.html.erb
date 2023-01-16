@@ -1,0 +1,34 @@
+<div class='container'>
+  <div class='row'>
+    <h5>会員一覧</h5>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>ニックネーム</th>
+      <th>メールアドレス</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reviewers.each do |reviewer| %>
+    <tr>
+      <td><%= reviewer.id %></td>
+      <td><%= link_to "#{reviewer.nickname}", admin_reviewer_path(reviewer.id) %></td>
+      <td><%= reviewer.email %></td>
+      <td>
+        <% status=reviewer.is_deleted %>
+        <% if status==false %>
+          <p>有効</p>
+        <% else %>
+          <p>退会</p>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

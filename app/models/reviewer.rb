@@ -14,4 +14,9 @@ class Reviewer < ApplicationRecord
       reviewer.birthday = Date.new(2000, 12, 1)
     end
   end
+
+  def get_profile_image
+    (profile_image.attached?) ? profile_image: 'no_image.jpg'
+  end
+
 end

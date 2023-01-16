@@ -1,5 +1,5 @@
 class Admin::ShopsController < ApplicationController
-  before_action :authenticate_admin!
+  #before_action :authenticate_admin!
 
   def index
     @shops = Shop.all
@@ -10,6 +10,7 @@ class Admin::ShopsController < ApplicationController
   end
 
   def create
+  #byebug
   @shop = Shop.new(shop_params)
     if @shop.save
       redirect_to admin_shop_path(@shop.id)
@@ -21,6 +22,7 @@ class Admin::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @shop_payments = ShopPayment.where(shop_payment_ids:[])
   end
 
   def edit
@@ -28,9 +30,15 @@ class Admin::ShopsController < ApplicationController
   end
 
   def update
-    @shop = Shop.find(params[:id])
-    shop.update(update_params)
+    shop = Shop.find(params[:id])
+    shop.update(shop_params)
     redirect_to admin_shop_path(shop.id)
+  end
+
+  def destroy
+    shop = Shop.find(params[:id])
+    shop.destroy
+    redirect_to admin_shops_path
   end
 
 
@@ -38,6 +46,6 @@ class Admin::ShopsController < ApplicationController
   #ストロングパラメーター
   private
     def shop_params
-      params.require(:shop).permit(:name, :address, :access, :hours, :genre_id, :is_active, shop_payment_ids:[])
+      params.require(:shop).permit(:shop_image, :name, :address, :introduction, :access, :hours, :genre_id, :is_active, shop_payment_ids: [])
     end
 end

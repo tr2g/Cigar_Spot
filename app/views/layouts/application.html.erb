@@ -23,11 +23,11 @@
             <ul class="navbar-nav ml-auto">
               <% if reviewer_signed_in? %>
               <li>
-                <% if @reviewer == current_reviewer %> <!--ゲストユーザーにはマイページリンクを表示しない-->
+                <%# if @reviewer.nickname != "guestreviewer" %> <!--ゲストユーザーにはマイページリンクを表示しない-->
                   <%= link_to reviewers_my_page_path, class: 'nav-link text-secondary' do %>
                   <i class="fas fa-user"></i> My page
                   <% end %>
-                <% end %>
+                <%# end %>
               </li>
               <li>
                 <%= link_to shops_path, class: 'nav-link text-secondary' do %>
@@ -97,6 +97,14 @@
     <main>
     <%= yield %>
     </main>
-    <footer></footer>
+    <footer>
+      <div class='container mt-5 text-secondary' >
+        <div class='row'>
+          <div class='mx-auto'>
+            <p>© Kazuki Fukuyama,Inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

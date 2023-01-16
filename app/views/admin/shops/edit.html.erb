@@ -1,0 +1,59 @@
+<div class='container'>
+  <div class='row justify-content-center'>
+    <div class='mx-auto col-7'>
+      <h4>店舗情報編集</h4>
+      <%= form_with model: @shop, url: admin_shop_path, method: :patch do |f| %>
+              <div class="form-group">
+          <%= f.label :shop_image, "店舗参考画像" %><br>
+          <%= f.file_field :shop_image, accept: "image/*" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :name, "店舗名" %><br>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :address, "店舗住所" %><br>
+          <%= f.text_field :address, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :access, "アクセス" %><br>
+          <%= f.text_field :access, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :introduction, "備考" %><br>
+          <%= f.text_field :introduction, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :hours, "営業時間" %><br>
+          <%= f.text_field :hours, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :payment_name, "可能な支払方法" %> <br>
+          <%= f.collection_check_boxes(:shop_payment_ids, ShopPayment.all, :id ,:payment_name) do |payment| %>
+            <%= payment.label do %>
+              <%= payment.check_box %>
+              <%= payment.text %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :genre_id, '店舗ジャンル' %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: '選択してください' }, class: 'form-control' %>
+        </div>
+
+        <div class="action">
+          <%= f.submit "変更を保存", class: 'btn btn-primary btn-sm' %>
+          <%= link_to "店舗情報を削除", admin_shop_path(@shop.id), class: 'btn btn-sm btn-danger', method: :delete %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class='container'>
+  <h5><%= @reviewer.nickname %>さんの会員ステータスを変更する</h5>
+  <div class='row'>
+    <div class='col'>
+      <tr>
+      <th>ニックネーム</th>：<th><%= @reviewer.nickname %></td><td scope="col" width="190"></td>
+    </tr>
+    <br>
+    <tr>
+      <th>メールアドレス</th>：<td><%= @reviewer.email %></td>
+    </tr>
+    </div>
+    <div class='col'>
+      <%= form_with model: @reviewer, url: admin_reviewer_path, method: :patch, local: true do |f| %>
+    <tr>
+      <th>会員ステータス</th>
+      <td><%= f.radio_button :is_deleted, :false %>有効</td>
+      <td><%= f.radio_button :is_deleted, :true %>退会</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><%= f.submit "変更を保存する", class: "btn btn-success" %> </td>
+    </tr>
+    <% end %>
+    </div>
+  </div>
+</div>

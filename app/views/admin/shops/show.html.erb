@@ -1,0 +1,42 @@
+<div class='container'>
+  <h4>店舗情報詳細</h4>
+  <div class='row'>
+    <div class='col'>
+      <%= image_tag @shop.get_shop_image, size: "200x200" %>
+    </div>
+    <div class='col'>
+      <table>
+        <tr>
+          <td>店舗名</td>
+          <td><%= @shop.name %></td>
+        </tr>
+        <tr>
+          <td>店舗住所</td>
+          <td><%= @shop.address %></td>
+        </tr>
+        <tr>
+          <td>備考</td>
+          <td><%= @shop.introduction %></td>
+        </tr>
+        <tr>
+          <td>営業時間</td>
+          <td><%= @shop.hours %></td>
+        </tr>
+        <tr>
+          <td>支払方法</td>
+          <%# byebug %>
+          <td>
+            <% @shop_payments.each do |shop_payments| %>
+              <%= shop_payments.id %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>店舗ジャンル</td>
+          <td><%= @shop.genre.name %></td>
+        </tr>
+      </table>
+      <%= link_to "店舗情報編集", edit_admin_shop_path, class: "btn btn-success" %>
+    </div>
+  </div>
+</div>

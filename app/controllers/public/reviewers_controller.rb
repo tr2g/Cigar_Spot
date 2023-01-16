@@ -20,11 +20,18 @@ class Public::ReviewersController < ApplicationController
   def unsubscribe
   end
 
+  def index
+  end
+
   def show
     @reviewer = Reviewer.find(current_reviewer.id)
   end
 
   def edit
+    @reviewer = Reviewer.find(params[:id])
+    if @reviewer != current_reviewer
+      redirect_to reviewer_path(current_reviewer.id)
+    end
   end
 
   private #ストロングパラメーター

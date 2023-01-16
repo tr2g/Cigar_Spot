@@ -1,0 +1,33 @@
+<div class='container'>
+  <%= image_tag @reviewer.get_profile_image, size: '100x100' %>
+  <div class='row'>
+    <h6><%= @reviewer.nickname %>さんの登録情報</h6>
+  </div>
+
+  <div class='row'>
+    <table>
+      <tr>
+    <th scope="col" width="150">ニックネーム</th><td scope="col" width="190"><%= @reviewer.nickname %></td><td scope="col" width="190"></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th><td><%= @reviewer.email %></td><td></td>
+    </tr>
+    <tr>
+      <th>会員ステータス</th>
+      <td>
+        <% status=@reviewer.is_deleted %>
+        <% if status==false %>
+          <b class="text-success">有効</b>
+        <% else %>
+          <b class="text-black-50">退会</b>
+        <% end %>
+      </td>
+      <td></td>
+    </tr>
+  <tr>
+    <td></td>
+    <td><%= link_to "編集する", edit_admin_reviewer_path(@reviewer.id), class: "btn btn-success" %></td>
+  </tr>
+    </table>
+  </div>
+</div>
