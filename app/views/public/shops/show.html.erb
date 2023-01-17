@@ -52,15 +52,18 @@
     <div class='col'>
       <h5 class="bg-secondary text-light">コメント一覧</h5>
       <% @shop.reviewer_comments.where.not(id: nil).each do |reviewer_comment| %>
+      <div class='col'>
         <%= image_tag reviewer_comment.reviewer.get_profile_image, size: "100x100" %>
         <%= reviewer_comment.reviewer.nickname %>
-        <%= reviewer_comment.created_at.strftime('%Y/%m/%d') %>  <%= reviewer_comment.body %>
+        <%= reviewer_comment.created_at.strftime('%Y/%m/%d') %>
+        <%#= truncate(reviewer_comment, length:10, omission: "▼") %> <!--長い文字列を省略する-->
 
         <!--current_reviewerには編集・削除ボタンを出す-->
         <% if reviewer_comment.reviewer == current_reviewer %>
           <%= link_to "編集", edit_reviewer_comment_path(reviewer_comment), class: "btn btn-sm btn-success" %>
           <%= link_to "削除", reviewer_comment_path(reviewer_comment.shop_id, reviewer_comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-sm btn-danger" %>
         <% end %>
+      </div>
       <% end %>
     </div>
   </div>
