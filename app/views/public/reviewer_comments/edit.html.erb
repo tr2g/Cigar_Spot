@@ -1,12 +1,10 @@
 <div class='container'>
   <h5>コメント編集</h5>
   <div class='col-7 mt-5'>
-    <%= form_with model: [@shop, @reviewer_comment], url: admin_genre_path, method: :patch do |f| %>
+    <%= form_with model: @reviewer_comment, url: shop_reviewer_comment_path(@reviewer_comment.shop, @reviewer_comment), method: :patch do |f| %>
     <strong class="mr-5">コメント内容</strong>
       <%= f.text_area :body, value: @reviewer_comment.body, class: "mr-5" %>
       <%= f.submit "変更内容を保存", class: "btn btn-success" %>
     <% end %>
   </div>
 </div>
-
-<!--parameter missing出る-->

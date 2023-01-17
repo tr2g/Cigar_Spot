@@ -16,20 +16,21 @@ class Public::ReviewerCommentsController < ApplicationController
 
   def show
     @reviewer_comment = ReviewerComment.new
+    @reviewer = current_reviewer
   end
 
   def edit
-    @reviewer_comment = ReviewerComment.find(reviewer_comment_params)
+    @reviewer_comment = ReviewerComment.find(params[:id])
   end
 
   def update
-    @reviewer_comment = ReviewerComment.find(reviewer_comment_params)
-    @reviewer_comment.update
+    @reviewer_comment = ReviewerComment.find(params[:id])
+    @reviewer_comment.update(reviewer_comment_params)
     redirect_to shops_path
   end
 
   def destroy
-    @reviewer_comment = ReviewerComment.find(reviewer_comment_params)
+    @reviewer_comment = ReviewerComment.find(params[:id])
     @reviewer_comment.destroy
     redirect_to shops_path
   end
@@ -39,7 +40,7 @@ class Public::ReviewerCommentsController < ApplicationController
   # ストロングパラメーター
   private
     def reviewer_comment_params
-      params.require(:reviewer_comment).permit(:body)
+      params.require(:reviewer_comment).permit(:body, :star_rate)
     end
 
 end

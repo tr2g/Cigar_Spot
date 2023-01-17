@@ -1,32 +1,41 @@
 <div class='container px-5 px-sm-0'>
-  <div class='row'>
-    <div class='col-md-9'>
-      <h4 class='bg-secondary text-light'>My page</h4>
-      <%= image_tag @reviewer.get_profile_image, size: '100x100' %>
-
-      <table>
-        <tbody>
-          <tr>
-            <th>ニックネーム</th>
-            <th><%= @reviewer.nickname %></th>
-          </tr>
-          <tr>
-            <th>生年月日</th>
-            <th><%= @reviewer.birthday %></th>
-          </tr>
-          <tr>
-            <td><%= link_to 'レビュー履歴一覧', reviewer_comments_path %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class='row bg-secondary text-light'>
+    <h4>My page</h4>
   </div>
-
   <div class='row'>
-    <% if @reviewer == current_reviewer %>
-      <%= link_to edit_reviewer_path(@reviewer), class: "btn btn-outline-secondary" do %>
-      <i class="fas fa-cog"></i>
-      <% end %>
-    <% end %>
+      <div class='col-md-3'>
+
+        <!--↓会員詳細-->
+        <h2 class='mt-3'>Info</h2>
+        <%= image_tag @reviewer.get_profile_image, size: '100x100' %>
+        <table>
+          <tbody>
+            <tr>
+              <th>ニックネーム</th>
+              <th><%= @reviewer.nickname %></th>
+            </tr>
+            <tr>
+              <th>生年月日</th>
+              <th><%= @reviewer.birthday %></th>
+            </tr>
+            <tr>
+              <td>
+                <% if @reviewer == current_reviewer %>
+                  <%= link_to edit_reviewer_path(@reviewer), class: "btn btn-outline-secondary" do %>
+                  <i class="fas fa-cog"></i>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!--レビュー一覧-->
+        <div class='col-md-8 offset-md-1'>
+          <h2>Reviews</h2>
+          <%= render 'public/reviewer_comments/index', reviewer_comments: @reviewer_comments, reviewer_comment: @reviewer_comment %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

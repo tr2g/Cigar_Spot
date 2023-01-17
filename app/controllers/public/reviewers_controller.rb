@@ -24,20 +24,17 @@ class Public::ReviewersController < ApplicationController
   end
 
   def show
-    @reviewer = Reviewer.find(current_reviewer.id)
+    @reviewer = current_reviewer
+    @reviewer_comments = ReviewerComment.all
+    @reviewer_comment = ReviewerComment.new
   end
 
   def edit
-    #@reviewer_comment = ReviewerComment.find(reviewer_comment_params)
-    @reviewer = Reviewer.find(params[:id])
-    if @reviewer != current_reviewer
-      redirect_to reviewer_path(current_reviewer.id)
-    end
+    @reviewer = current_reviewer
   end
 
   private #ストロングパラメーター
     def reviewer_params
       params.require(:reviewer).permit(:nickname, :birthday, :email)
     end
-
 end

@@ -1,1 +1,35 @@
-コメント詳細
+<div class='container'>
+  <div class='row'>
+    <h4>レビュー内容詳細</h4>
+    <div class='col-5 mx-auto'>
+      <%= image_tag @reviewer.get_profile_image, size:"200x200" %>
+    </div>
+    <div class='col-7 mx-auto'>
+      <table class="table ml-0">
+        <tr>
+          <td class="border border-0" scope="col" width="200"><h5>投稿者</h5></td>
+          <td class="border border-0"><%= @reviewer.nickname %></td>
+        </tr>
+        <tr>
+          <td class="border border-0"><h5>レビュー詳細</h5></td>
+          <td class="border border-0"><%= @shop.reviewer_comment.body %></td>
+        </tr>
+        <tr>
+          <td class="border border-0"><h5>評価</h5></td>
+          <td class="border border-0">
+            <% if @reviewer_comment.star_rate == 1.0 %>
+                ★☆☆☆☆
+              <% elsif @reviewer_comment.star_rate == 2.0 %>
+                ★★☆☆☆
+              <% elsif @reviewer_comment.star_rate == 3.0 %>
+                ★★★☆☆
+              <% elsif @reviewer_comment.star_rate == 4.0 %>
+                ★★★★☆
+              <% elsif @reviewer_comment.star_rate == 5.0 %>
+                ★★★★★
+            <% end %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

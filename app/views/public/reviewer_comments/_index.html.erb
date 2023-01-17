@@ -13,14 +13,14 @@
   </thead>
 
   <tbody>
-    <% @reviewer_comments.each do |reviewer_comment| %>
+    <% reviewer_comments.each do |reviewer_comment| %>
     <tr>
       <td><%= reviewer_comment.body %></td>
       <td>タグ</td>
       <td>
         <% if reviewer_comment.reviewer == current_reviewer %>
-          <%= link_to '編集', edit_reviewer_comment_path(@reviewer_comment), class: "btn btn-sm btn-success" %></td>
-          <%= link_to '削除', reviewer_comment_path(@reviewer_comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%></td>
+          <%= link_to '編集', edit_reviewer_comment_path(reviewer_comment), class: "btn btn-sm btn-success" %></td>
+          <%= link_to '削除', reviewer_comment_path(reviewer_comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%></td>
         <% end %>
       </td>
     <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_15_050537) do
+ActiveRecord::Schema.define(version: 2023_01_17_110122) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +56,47 @@ ActiveRecord::Schema.define(version: 2023_01_15_050537) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rating_rates", force: :cascade do |t|
+    t.decimal "value", precision: 25, scale: 16, default: "0.0"
+    t.string "author_type", limit: 10, null: false
+    t.integer "author_id", null: false
+    t.string "resource_type", limit: 10, null: false
+    t.integer "resource_id", null: false
+    t.string "scopeable_type", limit: 10
+    t.integer "scopeable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id", "resource_type", "resource_id", "scopeable_type", "scopeable_id"], name: "index_rating_rates_on_author_and_resource_and_scopeable", unique: true
+    t.index ["author_type", "author_id"], name: "index_rating_rates_on_author_type_and_author_id"
+    t.index ["resource_type", "resource_id"], name: "index_rating_rates_on_resource_type_and_resource_id"
+    t.index ["scopeable_type", "scopeable_id"], name: "index_rating_rates_on_scopeable_type_and_scopeable_id"
+  end
+
+  create_table "rating_ratings", force: :cascade do |t|
+    t.decimal "average", precision: 25, scale: 16, default: "0.0"
+    t.decimal "estimate", precision: 25, scale: 16, default: "0.0"
+    t.integer "sum", default: 0
+    t.integer "total", default: 0
+    t.string "resource_type", limit: 10, null: false
+    t.integer "resource_id", null: false
+    t.string "scopeable_type", limit: 10
+    t.integer "scopeable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_type", "resource_id", "scopeable_type", "scopeable_id"], name: "index_rating_rating_on_resource_and_scopeable", unique: true
+    t.index ["resource_type", "resource_id"], name: "index_rating_ratings_on_resource_type_and_resource_id"
+    t.index ["scopeable_type", "scopeable_id"], name: "index_rating_ratings_on_scopeable_type_and_scopeable_id"
+  end
+
+  create_table "review_tag_relations", force: :cascade do |t|
+    t.integer "reviewer_comment_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reviewer_comment_id"], name: "index_review_tag_relations_on_reviewer_comment_id"
+    t.index ["tag_id"], name: "index_review_tag_relations_on_tag_id"
   end
 
   create_table "reviewer_comments", force: :cascade do |t|
@@ -107,6 +148,14 @@ ActiveRecord::Schema.define(version: 2023_01_15_050537) do
     t.string "introduction"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "review_tag_relations", "reviewer_comments"
+  add_foreign_key "review_tag_relations", "tags"
 end
