@@ -3,39 +3,38 @@
     <h4>My page</h4>
   </div>
   <div class='row'>
-      <div class='col-md-3'>
+    <div class='col-md-3'>
 
-        <!--↓会員詳細-->
-        <h2 class='mt-3'>Info</h2>
-        <%= image_tag @reviewer.get_profile_image, size: '100x100' %>
-        <table>
-          <tbody>
-            <tr>
-              <th>ニックネーム</th>
-              <th><%= @reviewer.nickname %></th>
-            </tr>
-            <tr>
-              <th>生年月日</th>
-              <th><%= @reviewer.birthday %></th>
-            </tr>
-            <tr>
-              <td>
-                <% if @reviewer == current_reviewer %>
-                  <%= link_to edit_reviewer_path(@reviewer), class: "btn btn-outline-secondary" do %>
-                  <i class="fas fa-cog"></i>
-                  <% end %>
+      <!--↓会員詳細-->
+      <h2 class='mt-3'>Info</h2>
+      <%= image_tag @reviewer.get_profile_image, size: '100x100' %>
+      <table>
+        <tbody>
+          <tr>
+            <th>ニックネーム</th>
+            <th><%= @reviewer.nickname %></th>
+          </tr>
+          <tr>
+            <th>生年月日</th>
+            <th><%= @reviewer.birthday %></th>
+          </tr>
+          <tr>
+            <td>
+              <% if @reviewer == current_reviewer %>
+                <%= link_to edit_reviewer_path(@reviewer), class: "btn btn-outline-secondary" do %>
+                <i class="fas fa-cog"></i>
                 <% end %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <!--レビュー一覧-->
+        <!--自分のレビュー一覧にしたい-->
         <div class='col-md-8 offset-md-1'>
           <h2>Reviews</h2>
-          <%= render 'public/reviewer_comments/index', reviewer_comments: @reviewer_comments, reviewer_comment: @reviewer_comment %>
+          <%= render 'public/reviewer_comments/index', shop: @shop, reviewer_comments: @reviewer_comments, reviewer_comment: @reviewer_comment, reviewer_comment_tag: @reviewer_comment_tag %>
         </div>
-      </div>
-    </div>
   </div>
 </div>

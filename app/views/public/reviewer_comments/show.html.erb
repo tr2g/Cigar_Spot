@@ -12,7 +12,7 @@
         </tr>
         <tr>
           <td class="border border-0"><h5>レビュー詳細</h5></td>
-          <td class="border border-0"><%= @shop.reviewer_comment.body %></td>
+          <td class="border border-0"><%#= @shop.reviewer_comment.body %></td>
         </tr>
         <tr>
           <td class="border border-0"><h5>評価</h5></td>
@@ -27,7 +27,16 @@
                 ★★★★☆
               <% elsif @reviewer_comment.star_rate == 5.0 %>
                 ★★★★★
-            <% end %></td>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="border border-0"><h5>タグ</h5></td>
+          <td class="border border-0">
+            <% @reviewer_comment.tags.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          </td>
         </tr>
       </table>
     </div>

@@ -40,7 +40,7 @@ class Public::ReviewerCommentsController < ApplicationController
   # ストロングパラメーター
   private
     def reviewer_comment_params
-      params.require(:reviewer_comment).permit(:body, :star_rate)
+      params.require(:reviewer_comment).permit(:body, :star_rate, tag_ids:[])
     end
 
 end

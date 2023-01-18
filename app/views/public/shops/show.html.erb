@@ -45,7 +45,7 @@
       <%= form_with model: [@shop, @reviewer_comment], local: false do |f| %>
         <h5 class="bg-secondary text-light">コメント入力フォーム</h5> <br>
         <%= f.text_area :body, size: "50x10", placeholder: "お店に対するコメントを入力してください" %><br>
-        <h6>評価を選んでください</h6>
+        <h6>評価を選択してください</h6>
         <%= f.label "★" %>
         <%= f.radio_button :star_rate, 1 %>
         <%= f.label "★★"%>
@@ -56,42 +56,27 @@
         <%= f.radio_button :star_rate, 4 %>
         <%= f.label "★★★★★" %>
         <%= f.radio_button :star_rate, 5 %>
-
+        <br><br>
+        <!--タグ選択-->
+        <div class="check_box">
+          <h6>タグを選択してださい</h6>
+          <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div>
+              <%= tag.label do %>
+                <%= tag.check_box %>
+                <%= tag.name %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <br>
         <%= f.submit "コメントする", class: "btn btn-sm btn-success mt-3" %>
       <% end %>
     </div>
 
      <!--レビュー一覧-->
     <div class='col'>
-      <h5 class="bg-secondary text-light">コメント一覧</h5>
-      <% @shop.reviewer_comments.where.not(id: nil).each do |reviewer_comment| %>
-      <div class='col'>
-        <%= image_tag reviewer_comment.reviewer.get_profile_image, size: "100x100" %>
-        <%= reviewer_comment.reviewer.nickname %>
-        <%= reviewer_comment.created_at.strftime('%Y/%m/%d') %>
-        <%= link_to reviewer_comment_path(reviewer_comment.id) do %>
-        <%= reviewer_comment.body.truncate(10, omission: "...") %> <!--長い文字列を省略する-->
-        <% end %>
-        <!--★評価の表示-->
-        <% if reviewer_comment.star_rate == 1.0 %>
-          ★☆☆☆☆
-          <% elsif reviewer_comment.star_rate == 2.0 %>
-            ★★☆☆☆
-          <% elsif reviewer_comment.star_rate == 3.0 %>
-            ★★★☆☆
-          <% elsif reviewer_comment.star_rate == 4.0 %>
-            ★★★★☆
-          <% elsif reviewer_comment.star_rate == 5.0 %>
-            ★★★★★
-        <% end %>
-
-        <!--current_reviewerには編集・削除ボタンを出す-->
-        <% if reviewer_comment.reviewer == current_reviewer %>
-          <%= link_to "編集", edit_reviewer_comment_path(reviewer_comment), class: "btn btn-sm btn-success" %>
-          <%= link_to "削除", reviewer_comment_path(reviewer_comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-sm btn-danger" %>
-        <% end %>
-      </div>
-      <% end %>
+     <%= render 'public/reviewer_comments/index', shop: @shop, reviewer_comments: @reviewer_comments, reviewer_comment: @reviewer_comment, reviewer_comment_tag: @reviewer_comment_tag %>
     </div>
   </div>
 

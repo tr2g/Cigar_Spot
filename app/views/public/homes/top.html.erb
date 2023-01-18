@@ -1,16 +1,22 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <div class="home_photo col-xs-8 col-md-offset-2">
+    <div class="col">
       <p>ようこそ<br>こちらは喫煙可能な飲食店を探している方の為のサイトです。<br>
       会員でない方もお店の詳細を見ることが出来ます。<br>
       お店に対してコメントをする場合には会員登録が必要になります。</p>
     </div>
   </div>
-
-    <div class="row">
-      <!--検索機能-->
-      検索機能実装予定
-    </div>
+  <div class="row">
+      <!--タグ検索機能-->
+      <%= form_tag reviewer_comments_path, method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :tag_id,
+        options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+        {
+          prompt: 'タグで絞り込み',
+          onchange: '検索(this.form);'
+        } %>
+    <% end %>
+  </div>
 
 
 </div>
