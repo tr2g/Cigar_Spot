@@ -41,11 +41,15 @@
 
   <div class='row mt-5'>
     <div class='col'>
-      <!--レビュー投稿フォーム-->
+      <!--コメント入力フォーム-->
+      <div class="form-group">
       <%= form_with model: [@shop, @reviewer_comment], local: false do |f| %>
         <h5 class="bg-secondary text-light">コメント入力フォーム</h5> <br>
-        <%= f.text_area :body, size: "50x10", placeholder: "お店に対するコメントを入力してください" %><br>
-        <h6>評価を選択してください</h6>
+        <%= f.text_area :body, size: "50", placeholder: "お店に対するコメントを入力してください" %><br>
+      </div>
+      <!--★評価選択-->
+      <div class="rate">
+        <h6 class="bg-secondary text-light">評価を選択してください</h6>
         <%= f.label "★" %>
         <%= f.radio_button :star_rate, 1 %>
         <%= f.label "★★"%>
@@ -56,20 +60,18 @@
         <%= f.radio_button :star_rate, 4 %>
         <%= f.label "★★★★★" %>
         <%= f.radio_button :star_rate, 5 %>
-        <br><br>
+      </div>
+        <br>
         <!--タグ選択-->
         <div class="check_box">
-          <h6>タグを選択してださい</h6>
-          <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-            <div>
+          <h6 class="bg-secondary text-light">タグを選択してださい</h6>
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
               <%= tag.label do %>
                 <%= tag.check_box %>
-                <%= tag.name %>
+                <%= tag.text %>
               <% end %>
-            </div>
           <% end %>
         </div>
-        <br>
         <%= f.submit "コメントする", class: "btn btn-sm btn-success mt-3" %>
       <% end %>
     </div>

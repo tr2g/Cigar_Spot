@@ -15,8 +15,9 @@ class Public::ReviewerCommentsController < ApplicationController
   end
 
   def show
-    @reviewer_comment = ReviewerComment.new
+    @reviewer_comment_new = ReviewerComment.new
     @reviewer = current_reviewer
+    @reviewer_comment = ReviewerComment.find(params[:id])
   end
 
   def edit
