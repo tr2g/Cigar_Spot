@@ -25,7 +25,7 @@ class Public::ReviewersController < ApplicationController
 
   def show
     @reviewer = current_reviewer
-    @reviewer_comments = ReviewerComment.all
+    @reviewer_comments = current_reviewer.reviewer_comments
     @reviewer_comment = ReviewerComment.new
   end
 

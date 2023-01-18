@@ -41,44 +41,53 @@
 
   <div class='row mt-5'>
     <div class='col'>
-      <!--コメント入力フォーム-->
-      <div class="form-group">
-      <%= form_with model: [@shop, @reviewer_comment], local: false do |f| %>
-        <h5 class="bg-secondary text-light">コメント入力フォーム</h5> <br>
-        <%= f.text_area :body, size: "50", placeholder: "お店に対するコメントを入力してください" %><br>
-      </div>
-      <!--★評価選択-->
-      <div class="rate">
-        <h6 class="bg-secondary text-light">評価を選択してください</h6>
-        <%= f.label "★" %>
-        <%= f.radio_button :star_rate, 1 %>
-        <%= f.label "★★"%>
-        <%= f.radio_button :star_rate, 2 %>
-        <%= f.label "★★★"%>
-        <%= f.radio_button :star_rate, 3 %>
-        <%= f.label "★★★★"%>
-        <%= f.radio_button :star_rate, 4 %>
-        <%= f.label "★★★★★" %>
-        <%= f.radio_button :star_rate, 5 %>
-      </div>
-        <br>
-        <!--タグ選択-->
-        <div class="check_box">
-          <h6 class="bg-secondary text-light">タグを選択してださい</h6>
-          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-              <%= tag.label do %>
-                <%= tag.check_box %>
-                <%= tag.text %>
+      <% if current_reviewer.nickname != "guestreviewer" %>
+        <!--コメント入力フォーム-->
+        <div class="form-group">
+          <%= form_with model: [@shop, @reviewer_comment], local: true do |f| %>
+            <h5 class="bg-secondary text-light">コメント入力フォーム</h5> <br>
+            <%= f.text_area :body, size: "50", placeholder: "お店に対するコメントを入力してください" %><br>
+
+            <!--★評価選択-->
+            <div class="rate">
+              <h6 class="bg-secondary text-light">評価を選択してください</h6>
+              <%= f.label "★" %>
+              <%= f.radio_button :star_rate, 1 %>
+              <%= f.label "★★"%>
+              <%= f.radio_button :star_rate, 2 %>
+              <%= f.label "★★★"%>
+              <%= f.radio_button :star_rate, 3 %>
+              <%= f.label "★★★★"%>
+              <%= f.radio_button :star_rate, 4 %>
+              <%= f.label "★★★★★" %>
+              <%= f.radio_button :star_rate, 5 %>
+            </div>
+            <br>
+            <!--タグ選択-->
+            <div class="check_box">
+              <h6 class="bg-secondary text-light">タグを選択してださい</h6>
+              <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+                <%= tag.label do %>
+                  <%= tag.check_box %>
+                  <%= tag.text %>
+                <% end %>
               <% end %>
+            </div>
+            <%= f.submit "コメントする", class: "btn btn-sm btn-success mt-3" %>
           <% end %>
         </div>
-        <%= f.submit "コメントする", class: "btn btn-sm btn-success mt-3" %>
+      <% else %>
+        <div class='col'>
+          <h5 class="bg-secondary text-light">コメント入力フォーム</h5> <br>
+          <h6>コメントするには会員登録が必要です</h6><br>
+        </div>
       <% end %>
     </div>
 
-     <!--レビュー一覧-->
+    <!--レビュー一覧-->
     <div class='col'>
-     <%= render 'public/reviewer_comments/index', shop: @shop, reviewer_comments: @reviewer_comments, reviewer_comment: @reviewer_comment, reviewer_comment_tag: @reviewer_comment_tag %>
+      <%= render 'public/shops/reviewer_comments', shop: @shop %>
+      <%= link_to '全てのレビューを表示する', shop_reviewer_comments_path(shop_id: @shop.id) %>
     </div>
   </div>
 

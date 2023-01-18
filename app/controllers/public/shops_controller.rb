@@ -8,9 +8,8 @@ class Public::ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     @shop_payments = ShopPayment.where(id: @shop.shop_payments.pluck(:id))
     @reviewer_comment = @shop.reviewer_comments.new
-    #@reviewer_comments = ReviewerComment.where(is_active: true).last(3)
+    @reviewer_comments = ReviewerComment.order(create_at: :desc).limit(3)
   end
-
 
 
   #ストロングパラメーター

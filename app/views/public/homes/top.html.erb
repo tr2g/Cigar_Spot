@@ -1,13 +1,24 @@
-<div class="container px-5 px-sm-0">
+<div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col-md-3">
+      <p>お店のジャンルで絞り込み</p>
+      <% if @genres != nil %> <!--ジャンルが空じゃなければ-->
+        <% @genres.each do |genre| %>
+          <%= genre.name %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class='col-md-9'>
       <p>ようこそ<br>こちらは喫煙可能な飲食店を探している方の為のサイトです。<br>
       会員でない方もお店の詳細を見ることが出来ます。<br>
       お店に対してコメントをする場合には会員登録が必要になります。</p>
     </div>
   </div>
+
   <div class="row">
       <!--タグ検索機能-->
+    <div class='col-md-6 mx-auto'>
       <%= form_tag reviewer_comments_path, method: :get, class: 'boards__searchForm' do %>
       <%= select_tag :tag_id,
         options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
@@ -16,7 +27,25 @@
           onchange: '検索(this.form);'
         } %>
     <% end %>
+    </div>
+
+    <div class='col-md-6 mx-auto'>
+      ワード検索機能実装予定（Shopモデルから探す）
+    </div>
   </div>
 
+  <div class='row mt-4'>
+    <div class='col mx-auto'>
+      <h5 class="bg-secondary text-light">最近登録されたお店</h5>
+        <% @shops.each do |shop| %>
+          <%= link_to shop_path(shop.id) do %>
+            <%#= image_tag shop.image %><!--NameError-->
+            <%= shop.name %>
+          <% end %>
+        <% end %>
+        <br>
+        <%= link_to "すべてのお店をチェックする >", shops_path %>
+    </div>
+  </div>
 
 </div>

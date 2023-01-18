@@ -3,19 +3,20 @@ class Public::ReviewerCommentsController < ApplicationController
 
   def index
     @reviewer_comments = ReviewerComment.all
-    @reviewer_comment = ReviewerComment.find(reviewer_comment_params)
+    @reviewer_comment = ReviewerComment.find(@reviewer_comments.ids)
+    @shop = Shop.find(params[:shop_id])
   end
 
   def create
     shop = Shop.find(params[:shop_id])
     comment = current_reviewer.reviewer_comments.new(reviewer_comment_params)
     comment.shop_id = shop.id
-    comment.save
+    comment.save!
     redirect_to shop_path(shop)
   end
 
   def show
-    @reviewer_comment_new = ReviewerComment.new
+    #@reviewer_comment_new = ReviewerComment.new
     @reviewer = current_reviewer
     @reviewer_comment = ReviewerComment.find(params[:id])
   end

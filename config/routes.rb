@@ -21,11 +21,11 @@ Rails.application.routes.draw do
 
     resources :reviewers
     resources :shops do
-      resources :reviewer_comments
+      resources :reviewer_comments, shallow: true
     end
     resources :sessions
     resources :registrations
-    resources :reviewer_comments
+    resources :reviewer_comments, only: [:index]
   end
 
   #ゲストログイン用ルーティング

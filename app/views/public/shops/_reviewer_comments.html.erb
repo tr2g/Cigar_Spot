@@ -1,8 +1,9 @@
+<!--自分の投稿だけ表示させられるのか-->
 <div class='container'>
   <div class='row'>
     <div class='col'>
       <h5 class="bg-secondary text-light">コメント一覧</h5>
-      <% reviewer_comments.each do |reviewer_comment| %>
+      <% shop.reviewer_comments.where.not(id: nil).each do |reviewer_comment| %>
       <div class='col'>
         <%= image_tag reviewer_comment.reviewer.get_profile_image, size: "100x100" %>
         <%= reviewer_comment.reviewer.nickname %>

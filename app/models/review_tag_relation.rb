@@ -1,6 +1,6 @@
 class ReviewTagRelation < ApplicationRecord
 
-  belongs_to :review
+  belongs_to :reviewer_comment
   belongs_to :tag
 
 end
