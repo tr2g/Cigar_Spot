@@ -90,15 +90,6 @@ ActiveRecord::Schema.define(version: 2023_01_17_110122) do
     t.index ["scopeable_type", "scopeable_id"], name: "index_rating_ratings_on_scopeable_type_and_scopeable_id"
   end
 
-  create_table "review_tag_relations", force: :cascade do |t|
-    t.integer "reviewer_comment_id"
-    t.integer "tag_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["reviewer_comment_id"], name: "index_review_tag_relations_on_reviewer_comment_id"
-    t.index ["tag_id"], name: "index_review_tag_relations_on_tag_id"
-  end
-
   create_table "reviewer_comments", force: :cascade do |t|
     t.integer "reviewer_id"
     t.integer "shop_id"
@@ -137,6 +128,15 @@ ActiveRecord::Schema.define(version: 2023_01_17_110122) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "shop_tag_relations", force: :cascade do |t|
+    t.integer "shop_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_shop_tag_relations_on_shop_id"
+    t.index ["tag_id"], name: "index_shop_tag_relations_on_tag_id"
+  end
+
   create_table "shops", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -156,6 +156,6 @@ ActiveRecord::Schema.define(version: 2023_01_17_110122) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "review_tag_relations", "reviewer_comments"
-  add_foreign_key "review_tag_relations", "tags"
+  add_foreign_key "shop_tag_relations", "shops"
+  add_foreign_key "shop_tag_relations", "tags"
 end

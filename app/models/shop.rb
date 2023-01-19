@@ -4,6 +4,8 @@ class Shop < ApplicationRecord
   has_many :shop_pay_relations, dependent: :destroy
   has_many :shop_payments,through: :shop_pay_relations, dependent: :destroy
   belongs_to :genre
+  has_many :shop_tag_relations
+  has_many :tags, through: :shop_tag_relations
 
   has_one_attached :shop_image
 
@@ -11,6 +13,15 @@ class Shop < ApplicationRecord
 
   def get_shop_image
     (shop_image.attached?) ? shop_image : 'no_image.jpg'
+  end
+
+  #検索方法の分岐
+  def self.looks(search, word)
+    if search == "partial_match"
+      Shop.where("name LIKE ?", "%#{word}%")
+    else
+      Shop.all
+    end
   end
 
 end

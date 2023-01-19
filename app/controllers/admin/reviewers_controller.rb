@@ -14,10 +14,10 @@ class Admin::ReviewersController < ApplicationController
 
   def update
     @reviewer = Reviewer.find(params[:id])
-    if reviewer.update(reviewer_params)
-      redirect_to admin_reviewer_path(reviewer.id)
+    if @reviewer.update(reviewer_params)
+      redirect_to admin_reviewer_path(@reviewer.id)
     else
-      render edit_admin_reviewer_path(reviewer.id)
+      render edit_admin_reviewer_path(@reviewer.id)
     end
   end
 

@@ -1,10 +1,9 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
-    <h5 class='mt-3'>会員情報の編集</h5>
-
-    <%= form_with model: current_reviewer, url: reviewer_information_path, method: :patch, local: true do |f| %>
-
-    <div class="field">
+    <div class='col mx-auto'>
+      <h5 class='mt-3 bg-secondary text-light'>会員情報の編集</h5>
+      <%= form_with model: current_reviewer, url: reviewers_information_edit_path, method: :patch, local: true do |f| %>
+        <div class="field">
           <%= f.label :nickname, "ニックネーム" %><br>
           <%= f.text_field :nickname, autofocus: true, class: "nickname rounded" %>
         </div>
@@ -18,9 +17,10 @@
           <%= f.email_field :email, autofocus: true, class: "email rounded" %>
         </div>
         <div class="actions">
-          <%= f.submit "変更内容を保存", class: "btn btn-sm btn-secondary rounded" %>
+          <%= f.submit "変更内容を保存", class: "btn btn-sm btn-secondary rounded mt-3" %>
+          <%= link_to "退会する", reviewers_unsubscribe_path, class: "btn btn-sm btn-danger mt-3" %>
         </div>
       <% end %>
-      <%= link_to "退会する", reviewer_unsubscribe_path, class: "btn btn-danger" %>
+    </div>
   </div>
 </div>

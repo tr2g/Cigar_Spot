@@ -18,14 +18,15 @@ Rails.application.routes.draw do
     patch 'reviewers/information' => 'reviewers#update'
     get 'reviewers/unsubscribe' => 'reviewers#unsubscribe'
     patch 'reviewers/withdrawal' => 'reviewers#withdrawal'
+    get 'search' => 'searches#search'
 
     resources :reviewers
     resources :shops do
-      resources :reviewer_comments, shallow: true
+      resources :reviewer_comments
     end
     resources :sessions
     resources :registrations
-    resources :reviewer_comments, only: [:index]
+    #resources :reviewer_comments, only: [:index]
   end
 
   #ゲストログイン用ルーティング

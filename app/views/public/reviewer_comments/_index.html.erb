@@ -1,12 +1,13 @@
+<!--自分が投稿したレビュー一覧-->
 <div class='container'>
   <div class='row'>
     <div class='col'>
-      <h5 class="bg-secondary text-light">コメント一覧</h5>
+      <h5 class="bg-secondary text-light">自分のレビュー一覧</h5>
       <% reviewer_comments.each do |reviewer_comment| %>
       <div class='col'>
         <%= image_tag reviewer_comment.reviewer.get_profile_image, size: "100x100" %>
         <%= reviewer_comment.reviewer.nickname %>
-        <%= link_to reviewer_comment_path(reviewer_comment.id) do %>
+        <%= link_to shop_reviewer_comment_path(reviewer_comment.shop, reviewer_comment) do %>
         <%= reviewer_comment.body.truncate(10, omission: "...") %> <!--長い文字列を省略する-->
         <% end %>
         <!--★評価の表示-->

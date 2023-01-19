@@ -1,0 +1,31 @@
+<h3>検索結果</h3>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col mx-auto'>
+
+      <table class="table table-hover table-inverse">
+        <!--検索対象がShopのとき-->
+        <% if @shops %>
+          <tbody>
+            <% @shops.each do |shop| %>
+              <tr>
+                <td><%= shop.name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% else %> <!--検索対象がShopじゃない=ReviewerCommentのとき-->
+          <tbody>
+            <% @reviewer_comments.each do |reviewer_comment| %>
+              <tr>
+                <td><%= reviewer_comment.reviewer_id.nickname %></td>
+                <td><%= reviewer_comment.body %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+</div>

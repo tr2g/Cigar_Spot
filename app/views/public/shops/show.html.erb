@@ -41,7 +41,8 @@
 
   <div class='row mt-5'>
     <div class='col'>
-      <% if current_reviewer.nickname != "guestreviewer" %>
+      <!--↓ログインしてる&nicknameが"guestreviewer"じゃないとき、フォームを表示する。-->
+      <% if reviewer_signed_in? && current_reviewer.nickname != "guestreviewer" %>
         <!--コメント入力フォーム-->
         <div class="form-group">
           <%= form_with model: [@shop, @reviewer_comment], local: true do |f| %>
@@ -66,7 +67,7 @@
             <!--タグ選択-->
             <div class="check_box">
               <h6 class="bg-secondary text-light">タグを選択してださい</h6>
-              <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+              <%= collection_check_boxes(:tag, :tag_ids, Tag.all, :id, :name) do |tag| %>
                 <%= tag.label do %>
                   <%= tag.check_box %>
                   <%= tag.text %>
@@ -75,6 +76,11 @@
             </div>
             <%= f.submit "コメントする", class: "btn btn-sm btn-success mt-3" %>
           <% end %>
+        </div>
+      <% elsif reviewer_signed_in? && current_reviewer.nickname == "guestreviewer" %>
+        <div class='col'>
+          <h5 class="bg-secondary text-light">コメント入力フォーム</h5> <br>
+          <h6>コメントするには会員登録が必要です</h6><br>
         </div>
       <% else %>
         <div class='col'>
