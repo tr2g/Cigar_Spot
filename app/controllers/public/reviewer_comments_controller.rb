@@ -32,7 +32,7 @@ class Public::ReviewerCommentsController < ApplicationController
   def update
     @reviewer_comment = ReviewerComment.find(params[:id])
     @reviewer_comment.update(reviewer_comment_params)
-    redirect_to shops_path
+    redirect_to shop_reviewer_comment_path(@reviewer_comment)
   end
 
   def destroy

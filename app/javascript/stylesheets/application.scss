@@ -1,11 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import url('https://fonts.googleapis.com/css2? family= Kiwi+Maru:wght@300 & display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+  }
+
+ * {
+  font-family: 'キウイ丸', serif;
+  }
 
 
 //デプロイ手順で行った「背景画像を表示できるようにする」記述

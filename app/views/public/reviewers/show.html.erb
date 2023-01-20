@@ -21,7 +21,7 @@
           <tr>
             <td>
               <% if @reviewer == current_reviewer %>
-                <%= link_to edit_reviewer_path(@reviewer), class: "btn btn-outline-secondary" do %>
+                <%= link_to  reviewers_information_edit_path(@reviewer), class: "btn btn-outline-secondary" do %>
                 <i class="fas fa-cog"></i>
                 <% end %>
               <% end %>
@@ -31,7 +31,7 @@
       </table>
     </div>
 
-        <!--自分のレビュー一覧にしたい-->
+        <!--自分のレビュー一覧-->
         <div class='col-md-8 offset-md-1'>
           <h2>Reviews</h2>
           <%= render 'public/reviewer_comments/index', reviewer_comments: @reviewer_comments %>

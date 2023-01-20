@@ -2,8 +2,8 @@ class Public::ReviewersController < ApplicationController
 
   def update
     @reviewer = Reviewer.find(current_reviewer.id)
-      if reviewer.update(reviewer_params)
-        redirect_to reviewer_my_page_path
+      if @reviewer.update(reviewer_params)
+        redirect_to reviewers_my_page_path
       else
         render reviewer_information_edit_path(reviewer.id)
       end
@@ -35,6 +35,6 @@ class Public::ReviewersController < ApplicationController
 
   private #ストロングパラメーター
     def reviewer_params
-      params.require(:reviewer).permit(:nickname, :birthday, :email)
+      params.require(:reviewer).permit(:nickname, :birthday, :email, :profile_image)
     end
 end

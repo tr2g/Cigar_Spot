@@ -1,24 +1,56 @@
-<h3>検索結果</h3>
-
 <div class='container'>
   <div class='row'>
+    <h3>検索結果</h3>
     <div class='col mx-auto'>
-
       <table class="table table-hover table-inverse">
         <!--検索対象がShopのとき-->
-        <% if @shops %>
+        <% if @range == "Shop" %>
+        <thead>
+          <tr>
+            <th>Shop Image</th>
+            <th>Shop Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @shops.each do |shop| %>
+            <tr>
+              <td><%= image_tag shop.get_shop_image, size: '100x100' %></td>
+              <td><%= shop.name %></td>
+              <td>Reviews：<%= shop.reviewer_comments.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        <% elsif params[:tag_id] %> <!--タグ検索のとき-->
+          <thead>
+            <tr>
+            <th>Shop Image</th>
+            <th>Shop Name</th>
+            <th></th>
+            </tr>
+          </thead>
           <tbody>
-            <% @shops.each do |shop| %>
-              <tr>
-                <td><%= shop.name %></td>
-              </tr>
+            <% @tags.each do |tag| %>
+            <tr>
+              <td><%#= image_tag @shops.get_shop_image, size: '100x100' %></td>
+              <td><%= @shops.name %></td>
+              <td>Reviews：<%= @reviewer_comments.count %></td>
+            </tr>
             <% end %>
           </tbody>
         <% else %> <!--検索対象がShopじゃない=ReviewerCommentのとき-->
+          <thead>
+            <tr>
+            <th>Reviewer Icon</th>
+            <th>Reviewer Name</th>
+            <th>Review</th>
+            </tr>
+          </thead>
           <tbody>
             <% @reviewer_comments.each do |reviewer_comment| %>
               <tr>
-                <td><%= reviewer_comment.reviewer_id.nickname %></td>
+                <td></td>
+                <td><%= reviewer_comment.reviewer.nickname %></td>
                 <td><%= reviewer_comment.body %></td>
               </tr>
             <% end %>

@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
     resources :sessions
     resources :registrations
-    #resources :reviewer_comments, only: [:index]
+    resources :reviewer_comments #, only: [:index]
   end
 
   #ゲストログイン用ルーティング
