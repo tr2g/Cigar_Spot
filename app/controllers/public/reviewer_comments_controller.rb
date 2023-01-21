@@ -5,7 +5,7 @@ class Public::ReviewerCommentsController < ApplicationController
     @reviewer_comments = ReviewerComment.all
     #↑tag_idがセットされてたらTagに関連付けられたreviewer_commentsを呼ぶ、指定がなければ全投稿を表示する記述
     @reviewer_comment = ReviewerComment.find(@reviewer_comments.ids)
-    #@shop = Shop.find(params[:shop_id])
+    @shop = Shop.find(params[:shop_id])
     @shops = params[:tag_id].present? ? Tag.find(params[:tag_id]).shops : Shop.all
   end
 
@@ -20,7 +20,7 @@ class Public::ReviewerCommentsController < ApplicationController
 
   def show
     #@reviewer_comment_new = ReviewerComment.new
-    @reviewer = current_reviewer
+    #@reviewer = current_reviewer
     @reviewer_comment = ReviewerComment.find(params[:id])
     @shop = Shop.find(params[:shop_id])
   end

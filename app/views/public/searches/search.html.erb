@@ -4,7 +4,7 @@
     <div class='col mx-auto'>
       <table class="table table-hover table-inverse">
         <!--検索対象がShopのとき-->
-        <% if @range == "Shop" %>
+        <% if @shops %>
         <thead>
           <tr>
             <th>Shop Image</th>
@@ -21,23 +21,7 @@
             </tr>
           <% end %>
         </tbody>
-        <% elsif params[:tag_id] %> <!--タグ検索のとき-->
-          <thead>
-            <tr>
-            <th>Shop Image</th>
-            <th>Shop Name</th>
-            <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @tags.each do |tag| %>
-            <tr>
-              <td><%#= image_tag @shops.get_shop_image, size: '100x100' %></td>
-              <td><%= @shops.name %></td>
-              <td>Reviews：<%= @reviewer_comments.count %></td>
-            </tr>
-            <% end %>
-          </tbody>
+
         <% else %> <!--検索対象がShopじゃない=ReviewerCommentのとき-->
           <thead>
             <tr>

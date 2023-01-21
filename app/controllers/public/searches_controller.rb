@@ -2,9 +2,8 @@ class Public::SearchesController < ApplicationController
 
   def search
     @range = params[:range]
-    @reviewer_comments = ReviewerComment.where(params[:reviewer_comment_id])
-    @shops = Shop.where(params[:shop_id])
-    #@tags = Tag.find(params[:tag_id]).shops
+    #@reviewer_comments = ReviewerComment.where(params[:reviewer_comment_id])
+    #@shops = Shop.where(params[:shop_id])
 
     if @range == "Shop" #検索するのがShopの場合
       @shops = Shop.looks(params[:search], params[:word])

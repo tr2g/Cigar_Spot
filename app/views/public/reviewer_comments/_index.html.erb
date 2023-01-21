@@ -2,7 +2,7 @@
 <div class='container'>
   <div class='row'>
     <div class='col'>
-      <h5 class="bg-secondary text-light">自分のレビュー一覧</h5>
+      <h5 class="bg-secondary text-light">レビュー一覧</h5>
       <% reviewer_comments.each do |reviewer_comment| %>
       <div class='col'>
         <%= image_tag reviewer_comment.reviewer.get_profile_image, size: "100x100" %>

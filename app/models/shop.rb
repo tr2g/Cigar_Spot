@@ -17,11 +17,7 @@ class Shop < ApplicationRecord
 
   #検索方法の分岐
   def self.looks(search, word)
-    if search == "partial_match"
       Shop.where("name LIKE ?", "%#{word}%")
-    else
-      Shop.all
-    end
   end
 
 end
