@@ -16,6 +16,7 @@
       <nav class="navbar navbar-expand-lg navbar-light p-5">
         <div class="container">
           <a class="navbar-brand" href="/"><%= image_tag 'CigarSpot_logo.jpg', size: '200x200' %></a>
+          <div class="text-danger">※現在登録されているデータは全て架空のものです</div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -94,7 +95,7 @@
         </div>
       </nav>
     </header>
-    <main>
+    <main
     <%= yield %>
     </main>
     <footer>

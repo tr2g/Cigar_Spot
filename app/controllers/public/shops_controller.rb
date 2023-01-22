@@ -1,7 +1,12 @@
 class Public::ShopsController < ApplicationController
 
   def index
-    @shops = Shop.all
+    if params[:genre_id].present?
+      @genre = Genre.find(params[:genre_id])
+      @shops = @genre.shops.order(created_at: :desc).limit(5)
+    else
+      @shops = Shop.order(created_at: :desc).limit(5)
+    end
   end
 
   def show

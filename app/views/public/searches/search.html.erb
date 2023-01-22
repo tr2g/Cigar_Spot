@@ -15,7 +15,11 @@
         <tbody>
           <% @shops.each do |shop| %>
             <tr>
-              <td><%= image_tag shop.get_shop_image, size: '100x100' %></td>
+              <td>
+                <%= link_to (shop) do %>
+                  <%= image_tag shop.get_shop_image, size: '100x100' %>
+                <% end %>
+              </td>
               <td><%= shop.name %></td>
               <td>Reviews：<%= shop.reviewer_comments.count %></td>
             </tr>

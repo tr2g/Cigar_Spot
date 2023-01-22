@@ -15,9 +15,6 @@ class Shop < ApplicationRecord
     (shop_image.attached?) ? shop_image : 'no_image.jpg'
   end
 
-  #検索方法の分岐
-  def self.looks(search, word)
-      Shop.where("name LIKE ?", "%#{word}%")
-  end
+
 
 end
