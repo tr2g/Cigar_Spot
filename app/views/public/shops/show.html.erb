@@ -92,7 +92,7 @@
 
     <!--レビュー一覧-->
     <div class='col'>
-      <%= render 'public/shops/reviewer_comments', shop: @shop, reviewer_comments: @reviewer_comments, reviewer: @reviewer %>
+      <%= render 'public/shops/reviewer_comments', shop: @shop, reviewer_comments: @reviewer_comments %>
       <%= link_to '全てのレビューを表示する', shop_reviewer_comments_path(shop_id: @shop.id) %>
     </div>
   </div>
