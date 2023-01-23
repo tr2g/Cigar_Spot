@@ -23,6 +23,9 @@ class Public::ReviewerCommentsController < ApplicationController
     #@reviewer = current_reviewer
     @reviewer_comment = ReviewerComment.find(params[:id])
     @shop = Shop.find(params[:shop_id])
+    @tags = @shop.tags.distinct
+    #binding.pry
+
   end
 
   def edit

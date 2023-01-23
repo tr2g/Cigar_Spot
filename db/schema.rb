@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2023_01_17_110122) do
     t.float "star_rate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "rate", default: 0.0, null: false
   end
 
   create_table "reviewers", force: :cascade do |t|
