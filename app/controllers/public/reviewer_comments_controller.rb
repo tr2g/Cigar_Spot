@@ -15,7 +15,7 @@ class Public::ReviewerCommentsController < ApplicationController
     comment.shop_id = shop.id
     comment.save!
     tag_params[:tag_ids].reject(&:empty?).each { |tag_id| ShopTagRelation.create!(tag: Tag.find(tag_id), shop: shop)}
-    redirect_to shop_path(shop)
+    redirect_to shop_path(params[:shop_id])
   end
 
   def show
@@ -41,7 +41,7 @@ class Public::ReviewerCommentsController < ApplicationController
   def destroy
     @reviewer_comment = ReviewerComment.find(params[:id])
     @reviewer_comment.destroy
-    redirect_to shops_path
+    redirect_to shop_path(params[:shop_id])
   end
 
 

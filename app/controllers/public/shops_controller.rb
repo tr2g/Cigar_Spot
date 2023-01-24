@@ -14,7 +14,9 @@ class Public::ShopsController < ApplicationController
     @shop_payments = ShopPayment.where(id: @shop.shop_payments.pluck(:id))
     #↑(whereで取ってくるidは@shopに紐づいたshop_paymentsのidカラム)
     @reviewer_comment = @shop.reviewer_comments.new
-    @reviewer_comments = ReviewerComment.order(created_at: :desc).limit(3)
+    @reviewer_comments = @shop.reviewer_comments.includes(:reviewer).where(reviewers: {is_deleted: false}).limit(3).order(created_at: :desc)
+                        #includes=@shop(13行目)のreviewer_commentsに関連するモデルを検索しますよ
+                        #where(includesで指定したモデル+s：退会してない会員).三件だけ表示.作成された順に
   end
 
 

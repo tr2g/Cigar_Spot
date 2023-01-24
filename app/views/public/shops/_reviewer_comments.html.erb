@@ -3,7 +3,8 @@
   <div class='row'>
     <div class='col'>
       <h5 class="bg-secondary text-light">レビュー一覧</h5>
-      <% shop.reviewer_comments.each do |reviewer_comment| %>
+     
+      <% reviewer_comments.each do |reviewer_comment| %>
         <div class='col'>
           <% if reviewer_comment.reviewer.nil? %>
           <% else %>
