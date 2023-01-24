@@ -22,7 +22,7 @@ class Admin::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    @shop_payments = ShopPayment.where(shop_payment_ids:[])
+    @shop_payments = ShopPayment.where(id: @shop.shop_payments.pluck(:id))
   end
 
   def edit

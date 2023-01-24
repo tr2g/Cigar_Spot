@@ -12,6 +12,7 @@ class Public::ShopsController < ApplicationController
   def show
     @shop = Shop.find(params[:id])
     @shop_payments = ShopPayment.where(id: @shop.shop_payments.pluck(:id))
+    #↑(whereで取ってくるidは@shopに紐づいたshop_paymentsのidカラム)
     @reviewer_comment = @shop.reviewer_comments.new
     @reviewer_comments = ReviewerComment.order(created_at: :desc).limit(3)
   end
