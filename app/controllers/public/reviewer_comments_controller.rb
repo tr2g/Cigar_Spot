@@ -2,7 +2,7 @@ class Public::ReviewerCommentsController < ApplicationController
 
 
   def index
-    @reviewer_comments = ReviewerComment.all
+    @reviewer_comments = ReviewerComment.active_comments
     #↑tag_idがセットされてたらTagに関連付けられたreviewer_commentsを呼ぶ、指定がなければ全投稿を表示する記述
     @reviewer_comment = ReviewerComment.find(@reviewer_comments.ids)
     @shop = Shop.find(params[:shop_id])
@@ -22,7 +22,7 @@ class Public::ReviewerCommentsController < ApplicationController
     #@reviewer_comment_new = ReviewerComment.new
     #@reviewer = current_reviewer
     @reviewer_comment = ReviewerComment.find(params[:id])
-    @shop = Shop.find(params[:shop_id])
+    @shop = @reviewer_comment.shop
     @tags = @shop.tags.distinct
     #binding.pry
 
@@ -30,18 +30,21 @@ class Public::ReviewerCommentsController < ApplicationController
 
   def edit
     @reviewer_comment = ReviewerComment.find(params[:id])
+    @shop = @reviewer_comment.shop
   end
 
   def update
     @reviewer_comment = ReviewerComment.find(params[:id])
     @reviewer_comment.update(reviewer_comment_params)
-    redirect_to shop_path(params[:shop_id])
+    @shop = @reviewer_comment.shop
+    redirect_to shop_path(@shop)
   end
 
   def destroy
     @reviewer_comment = ReviewerComment.find(params[:id])
     @reviewer_comment.destroy
-    redirect_to shop_path(params[:shop_id])
+    @shop = @reviewer_comment.shop
+    redirect_to shop_path(@shop)
   end
 
 

@@ -10,7 +10,7 @@
           <% else %>
             <%= image_tag reviewer_comment.reviewer.get_profile_image, size: "100x100" %>
             <%= reviewer_comment.reviewer.nickname %>
-            <%= link_to shop_reviewer_comment_path(shop, reviewer_comment) do %>
+            <%= link_to reviewer_comment_path(reviewer_comment) do %>
             <%= reviewer_comment.body.truncate(10, omission: "...") %> <!--長い文字列を省略する-->
             <% end %>
             <!--★評価の表示-->
@@ -28,8 +28,8 @@
 
             <!--current_reviewerには編集・削除ボタンを出す-->
             <% if reviewer_comment.reviewer == current_reviewer %>
-              <%= link_to "編集", edit_shop_reviewer_comment_path(shop, reviewer_comment), class: "btn btn-sm btn-success" %>
-              <%= link_to "削除", shop_reviewer_comment_path(shop,reviewer_comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-sm btn-danger" %>
+              <%= link_to "編集", edit_reviewer_comment_path(reviewer_comment), class: "btn btn-sm btn-success" %>
+              <%= link_to "削除", reviewer_comment_path(reviewer_comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-sm btn-danger" %>
             <% end %>
 
           <% end %>
