@@ -35,7 +35,7 @@ class Public::ReviewerCommentsController < ApplicationController
   def update
     @reviewer_comment = ReviewerComment.find(params[:id])
     @reviewer_comment.update(reviewer_comment_params)
-    redirect_to shop_reviewer_comment_path(@reviewer_comment)
+    redirect_to shop_path(params[:shop_id])
   end
 
   def destroy
