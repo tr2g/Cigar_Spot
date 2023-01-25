@@ -15,15 +15,14 @@ class Public::ShopsController < ApplicationController
     #↑(whereで取ってくるidは@shopに紐づいたshop_paymentsのidカラム)
     @reviewer_comment = @shop.reviewer_comments.new
     @reviewer_comments = @shop.reviewer_comments.active_comments.limit(3).order(created_at: :desc)
-                        #includes=@shop(13行目)のreviewer_commentsに関連するモデルを検索しますよ
-                        #where(includesで指定したモデル+s：退会してない会員).三件だけ表示.作成された順に
+    @tags = Tag.where(id: @shop.tags.pluck(:id))
   end
 
 
   #ストロングパラメーター
   private
     def shop_params
-      params.require(:shop).permit(:shop_image, :name, :address, :introduction, :access, :hours, :genre_id, :is_active, shop_payment_ids:[])
+      params.require(:shop).permit(:shop_image, :name, :address, :introduction, :access, :hours, :genre_id, :is_active, shop_payment_ids:[], tag_ids:[])
     end
 
 end

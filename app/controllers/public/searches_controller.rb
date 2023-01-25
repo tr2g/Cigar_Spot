@@ -8,9 +8,9 @@ class Public::SearchesController < ApplicationController
     if @range == "Shop" #検索するのがShopの場合
       @shops = Shop.where("name LIKE ?", "%#{params[:word]}%")
     elsif params[:tag_id] #タグ検索する場合
-      @shops = Tag.find(params[:tag_id]).shops
+      @shops = Tag.find(params[:tag_id]).shops.uniq
     else
-      @reviewer_comments = ReviewerComment.where("body LIKE?", "%#{params[:word]}%") #レビューを検索する場合
+      @reviewer_comments = ReviewerComment.where("body LIKE ?", "%#{params[:word]}%") #レビューを検索する場合
     end
 
   end

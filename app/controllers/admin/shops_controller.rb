@@ -23,6 +23,8 @@ class Admin::ShopsController < ApplicationController
   def show
     @shop = Shop.find(params[:id])
     @shop_payments = ShopPayment.where(id: @shop.shop_payments.pluck(:id))
+    @reviewer_comments = @shop.reviewer_comments.active_comments
+    @tags = Tag.where(id: @shop.tags.pluck(:id))
   end
 
   def edit
@@ -46,6 +48,6 @@ class Admin::ShopsController < ApplicationController
   #ストロングパラメーター
   private
     def shop_params
-      params.require(:shop).permit(:shop_image, :name, :address, :introduction, :access, :hours, :genre_id, :is_active, shop_payment_ids: [])
+      params.require(:shop).permit(:shop_image, :name, :address, :introduction, :access, :hours, :genre_id, :is_active, shop_payment_ids: [], tag_ids: [])
     end
 end

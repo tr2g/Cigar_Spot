@@ -37,7 +37,7 @@
           <tbody>
             <% @reviewer_comments.each do |reviewer_comment| %>
               <tr>
-                <td></td>
+                <td><%= image_tag reviewer_comment.reviewer.get_profile_image, size: '100x100' %></td>
                 <td><%= reviewer_comment.reviewer.nickname %></td>
                 <td><%= reviewer_comment.body %></td>
               </tr>

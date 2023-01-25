@@ -3,10 +3,10 @@ class Public::ReviewerCommentsController < ApplicationController
 
   def index
     @reviewer_comments = ReviewerComment.active_comments
-    #↑tag_idがセットされてたらTagに関連付けられたreviewer_commentsを呼ぶ、指定がなければ全投稿を表示する記述
     @reviewer_comment = ReviewerComment.find(@reviewer_comments.ids)
     @shop = Shop.find(params[:shop_id])
     @shops = params[:tag_id].present? ? Tag.find(params[:tag_id]).shops : Shop.all
+    #↑@shops=タグidがセットされてたらタグに関連づいたshopを取ってくる
   end
 
   def create
