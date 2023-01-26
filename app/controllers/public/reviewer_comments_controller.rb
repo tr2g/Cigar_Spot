@@ -14,7 +14,7 @@ class Public::ReviewerCommentsController < ApplicationController
     comment = current_reviewer.reviewer_comments.new(reviewer_comment_params)
     comment.shop_id = shop.id
     comment.save!
-    tag_params[:tag_ids].reject(&:empty?).each { |tag_id| ShopTagRelation.create!(tag: Tag.find(tag_id), shop: shop)}
+    #tag_params[:tag_ids].reject(&:empty?).each { |tag_id| ShopTagRelation.create!(tag: Tag.find(tag_id), shop: shop)}
     redirect_to shop_path(params[:shop_id])
   end
 
@@ -55,8 +55,8 @@ class Public::ReviewerCommentsController < ApplicationController
       params.require(:reviewer_comment).permit(:body, :star_rate)
     end
 
-    def tag_params
-      params.require(:tag).permit(tag_ids:[])
-    end
+    # def tag_params
+    #   params.require(:tag).permit(tag_ids:[])
+    # end
 
 end

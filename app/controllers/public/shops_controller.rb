@@ -22,7 +22,7 @@ class Public::ShopsController < ApplicationController
   #ストロングパラメーター
   private
     def shop_params
-      params.require(:shop).permit(:shop_image, :name, :address, :introduction, :access, :hours, :genre_id, :is_active, shop_payment_ids:[], tag_ids:[])
+      params.require(:shop).permit(:shop_image, :name, :address, :introduction, :access, :hours, :genre_id, :is_active, shop_payment_ids:[])
     end
 
 end
