@@ -69,3 +69,5 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 #gem 'rating'
+
+gem 'dotenv-rails' #環境変数を扱うためのgem
