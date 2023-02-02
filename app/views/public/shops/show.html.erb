@@ -58,9 +58,9 @@
         <!--コメント入力フォーム-->
         <div class="form-group">
           <%= form_with model: [@shop, @reviewer_comment], local: true do |f| %>
-            <h5 class="bg-secondary text-light">コメント入力フォーム</h5> <br>
+            <h5 class="bg-secondary text-light">レビュー入力フォーム</h5> <br>
             <%= f.text_area :body, size: "50", placeholder: "お店に対するコメントを入力してください" %><br>
-            
+
 
             <!--★評価選択-->
             <div class="rate">
@@ -78,17 +78,17 @@
             </div>
             <br>
           </div>
-            <%= f.submit "コメントする", class: "btn btn-sm btn-success mt-3" %>
+            <%= f.submit "投稿する", class: "btn btn-sm btn-success mt-3" %>
           <% end %>
         </div>
       <% elsif reviewer_signed_in? && current_reviewer.nickname == "guestreviewer" %>
         <div class='col'>
-          <h5 class="bg-secondary text-light">コメント入力フォーム</h5> <br>
+          <h5 class="bg-secondary text-light">レビュー入力フォーム</h5> <br>
           <h6>コメントするには会員登録が必要です</h6><br>
         </div>
       <% else %>
         <div class='col'>
-          <h5 class="bg-secondary text-light">コメント入力フォーム</h5> <br>
+          <h5 class="bg-secondary text-light">レビュー入力フォーム</h5> <br>
           <h6>コメントするには会員登録が必要です</h6><br>
         </div>
       <% end %>
