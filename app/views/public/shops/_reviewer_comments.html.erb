@@ -3,7 +3,7 @@
   <div class='row'>
     <div class='col'>
       <h5 class="bg-secondary text-light">レビュー一覧</h5>
-     
+
       <% reviewer_comments.each do |reviewer_comment| %>
         <div class='col'>
           <% if reviewer_comment.reviewer.nil? %>
@@ -12,6 +12,7 @@
             <%= reviewer_comment.reviewer.nickname %>
             <%= link_to reviewer_comment_path(reviewer_comment) do %>
             <%= reviewer_comment.body.truncate(10, omission: "...") %> <!--長い文字列を省略する-->
+            <%= reviewer_comment.score %> <!--APIの導入-->
             <% end %>
             <!--★評価の表示-->
             <% if reviewer_comment.star_rate == 1.0 %>
