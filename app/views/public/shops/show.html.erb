@@ -60,7 +60,7 @@
           <%= form_with model: [@shop, @reviewer_comment], local: true do |f| %>
             <h5 class="bg-secondary text-light">コメント入力フォーム</h5> <br>
             <%= f.text_area :body, size: "50", placeholder: "お店に対するコメントを入力してください" %><br>
-            <%= reviewer_comment.score %><br>
+            
 
             <!--★評価選択-->
             <div class="rate">

@@ -15,6 +15,10 @@
           <td class="border border-0"><%= @reviewer_comment.body %></td>
         </tr>
         <tr>
+          <td class="border border-0"><h5>本文の感情分析スコア</h5></td>
+          <td class="border border-0"><%= @reviewer_comment.score %> <!--APIの表示--></td>
+        </tr>
+        <tr>
           <td class="border border-0" scope="col" width="200"><h5>投稿日時</h5></td>
           <td class="border border-0"><%= @reviewer_comment.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
