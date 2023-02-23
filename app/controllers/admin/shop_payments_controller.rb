@@ -7,8 +7,12 @@ class Admin::ShopPaymentsController < ApplicationController
 
   def create
     @shop_payment = ShopPayment.new(shop_payment_params)
-    @shop_payment.save
-    redirect_to admin_shop_payments_path
+    if @shop_payment.save
+      redirect_to admin_shop_payment_path(@shop_payment.id)
+    else
+      @shop_payments = ShopPayment.all
+      render :index
+    end
   end
 
   def edit

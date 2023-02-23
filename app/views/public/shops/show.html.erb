@@ -77,7 +77,6 @@
               <%= f.radio_button :star_rate, 5 %>
             </div>
             <br>
-          </div>
             <%= f.submit "投稿する", class: "btn btn-sm btn-success mt-3" %>
           <% end %>
         </div>
@@ -92,6 +91,7 @@
           <h6>コメントするには会員登録が必要です</h6><br>
         </div>
       <% end %>
+      </div>
     <!--レビュー一覧-->
     <div class='col'>
       <%= render 'public/shops/reviewer_comments', shop: @shop, reviewer_comments: @reviewer_comments %>

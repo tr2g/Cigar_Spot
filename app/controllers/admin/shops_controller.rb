@@ -16,7 +16,7 @@ class Admin::ShopsController < ApplicationController
       redirect_to admin_shop_path(@shop.id)
     else
       @shops = Shop.all
-      render :index
+      render :new
     end
   end
 

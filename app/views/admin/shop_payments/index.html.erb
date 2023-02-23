@@ -3,6 +3,9 @@
     <h4>支払方法の一覧・追加</h4>
   </div>
 
+  <!--エラーメッセージ-->
+  <%= render "admin/shared/error_messages", resource: @shop_payment %>
+
   <!--支払方法追加フォーム-->
   <div class='row'>
     <div class='col-xs-3 mt-3'>
@@ -27,7 +30,7 @@
           <tr>
             <td><%= payments.payment_name %></td>
             <td><%= link_to "編集", edit_admin_shop_payment_path(payments.id), class: "ml-4 btn-sm btn-primary" %>
-                <%= link_to "削除", admin_shop_payment_path(payments.id), class: "btn-sm btn-danger", method: :delete,  "data-confirm" => "削除しますか？" %></td>
+                <%= link_to "削除", admin_shop_payment_path(payments.id), class: "btn-sm btn-danger", method: :delete, "data-confirm" => "削除しますか？" %></td>
           </tr>
           <% end %>
         </tbody>

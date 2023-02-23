@@ -2,6 +2,10 @@
   <div class='row justify-content-center'>
     <div class='col-md-7 mx-auto'>
       <h3>店舗新規登録</h3>
+
+      <!--エラーメッセージ-->
+      <%= render "admin/shared/error_messages", resource: @shop %>
+
       <%= form_with model: @shop, url: admin_shops_path, method: :post do |f| %>
         <div class="form-group">
           <%= f.label :shop_image, "店舗参考画像" %><br>

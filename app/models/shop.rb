@@ -1,5 +1,15 @@
 class Shop < ApplicationRecord
 
+  validates :shop_image, presence: true
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :access, presence: true
+  validates :introduction, presence: true
+  validates :hours, presence: true
+  validates :shop_payment_ids, presence: true
+  validates :genre_id, presence: true
+  validates :tag_ids, presence: true
+
   has_many :reviewer_comments, dependent: :destroy
   has_many :shop_pay_relations, dependent: :destroy
   has_many :shop_payments,through: :shop_pay_relations
