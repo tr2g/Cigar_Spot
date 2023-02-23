@@ -7,6 +7,7 @@ class Public::SessionsController < Devise::SessionsController
     sign_in reviewer #ゲストユーザーをログイン状態にする
     redirect_to root_path(reviewer),notice: 'ゲストユーザーとしてログインしました。'
   end
+  
 
 
   protected

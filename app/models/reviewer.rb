@@ -4,6 +4,12 @@ class Reviewer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :nickname,  presence: true
+  validates :birthday,  presence: true
+  validates :email,  presence: true
+  validates :password,  presence: true
+  validates :password_confirmation,  presence: true
+
   has_many :reviewer_comments, dependent: :destroy
   has_one_attached :profile_image
 
