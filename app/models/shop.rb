@@ -16,6 +16,7 @@ class Shop < ApplicationRecord
   belongs_to :genre
   has_many :shop_tag_relations, dependent: :destroy
   has_many :tags, through: :shop_tag_relations
+  has_many :favorites, dependent: :destroy
 
   has_one_attached :shop_image
 
@@ -25,6 +26,9 @@ class Shop < ApplicationRecord
     (shop_image.attached?) ? shop_image : 'no_image.jpg'
   end
 
+  def favorited_by?(reviewer)
+    favorites.exists?(reviewer_id: reviewer.id)
+  end
 
 
 end

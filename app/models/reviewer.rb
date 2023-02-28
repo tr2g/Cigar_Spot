@@ -12,6 +12,7 @@ class Reviewer < ApplicationRecord
 
   has_many :reviewer_comments, dependent: :destroy
   has_one_attached :profile_image
+  has_many :favorites, dependent: :destroy
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |reviewer|
