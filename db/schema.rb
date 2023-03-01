@@ -153,8 +153,9 @@ ActiveRecord::Schema.define(version: 2023_02_28_071943) do
     t.string "hours"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "genre_id"
     t.string "introduction"
+    t.integer "reviewer_id"
+    t.integer "genre_id"
   end
 
   create_table "tags", force: :cascade do |t|

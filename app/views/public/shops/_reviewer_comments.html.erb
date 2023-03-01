@@ -25,7 +25,8 @@
               <% elsif reviewer_comment.star_rate == 5.0 %>
                 ★★★★★
             <% end %>
-
+            <!--日付を表示する-->
+            <%= reviewer_comment.created_at.strftime('%Y/%m/%d') %>
             <!--current_reviewerには編集・削除ボタンを出す-->
             <% if reviewer_comment.reviewer == current_reviewer %>
               <%= link_to "編集", edit_reviewer_comment_path(reviewer_comment), class: "btn btn-sm btn-success" %>
