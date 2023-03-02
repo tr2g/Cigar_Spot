@@ -23,7 +23,6 @@ Rails.application.routes.draw do
     resources :reviewers
     resources :shops do
       resources :reviewer_comments, only: [:index, :new, :create]
-      resource :favorites, only: [:create, :destroy]
     end
     resources :sessions
     resources :registrations
